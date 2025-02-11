@@ -36,7 +36,7 @@ pipeline {
             ],
             callflow: [
               enable: true,
-              logLevel: 'INFO',
+              logLevel: 'DEBUG',
               java: [
                 tool: 'Java 11'
               ],

@@ -38,13 +38,7 @@ pipeline {
               enable: true,
               logLevel: 'INFO',
               java: [
-                tool: 'Java 11',
-                options: [
-                  '-Xmx2G'
-                ],
-                properties: [
-                  foo: 'bar'
-                ]
+                tool: 'Java 11'
               ],
               javaAnalysis: [
                 enable: true,

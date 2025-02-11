@@ -37,10 +37,6 @@ pipeline {
             callflow: [
               enable: true,
               logLevel: 'INFO',
-              algorithm: 'RTA_PLUS',
-              includes: [
-                '**/target/jenkins-examples-callflow-*-dist.zip'
-              ],
               java: [
                 tool: 'Java 11',
                 options: [
@@ -50,11 +46,15 @@ pipeline {
                   foo: 'bar'
                 ]
               ],
-              entrypointStrategy: [
-                $class: 'NamedStrategy',
-                name: 'JAVA_MAIN',
+              javaAnalysis: [
+                enable: true,
+                algorithm: 'RTA_PLUS',
+                includes: [
+                  '**/target/jenkins-examples-callflow-*-dist.zip'
+                ],
+                entrypointStrategy: 'JAVA_MAIN',
                 namespaces: [
-                  'org.sonatype.lifecycle.jenkins.examples.callflow'
+                    '/^org\\..+\\.example$/'
                 ]
               ]
             ]

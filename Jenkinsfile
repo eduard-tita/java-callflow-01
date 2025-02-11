@@ -48,7 +48,7 @@ pipeline {
                 ],
                 entrypointStrategy: 'JAVA_MAIN',
                 namespaces: [
-                  [namespace: '/^org\\..+\\.example\\.callflow$/']
+                  [namespace: 'org.sonatype.lifecycle.jenkins.examples.callflow']
                 ]
               ]
             ]

@@ -50,11 +50,11 @@ pipeline {
                 enable: true,
                 algorithm: 'RTA_PLUS',
                 includes: [
-                  '**/target/jenkins-examples-callflow-*-dist.zip'
+                  [pattern: '**/target/jenkins-examples-callflow-*-dist.zip']
                 ],
                 entrypointStrategy: 'JAVA_MAIN',
                 namespaces: [
-                    '/^org\\..+\\.example$/'
+                  [namespace: '/^org\\..+\\.example$/']
                 ]
               ]
             ]

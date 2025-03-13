@@ -35,13 +35,13 @@ pipeline {
               [scanPattern: '**/target/*.zip']
             ],
             callflow: [
-              enable: true,
               logLevel: 'DEBUG',
               java: [
                 tool: 'Java 11'
               ],
               javaAnalysis: [
                 enable: true,
+                force: true,
                 algorithm: 'RTA_PLUS',
                 includes: [
                   [pattern: '**/target/jenkins-examples-callflow-*-dist.zip']

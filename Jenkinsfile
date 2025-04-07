@@ -18,7 +18,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        echo "skip"
+        sh 'nvm clean'
       }
     }
 
@@ -40,7 +40,7 @@ pipeline {
               //],
               entrypointStrategy: [
                 $class: 'NamedStrategy',
-                name: 'ACCESSIBLE_CONCRETE',
+                name: 'JAVA_MAIN',
                 namespaces: [
                   'org.h2.tools', 'org.h2.server', 'org.h2.util'
                 ]

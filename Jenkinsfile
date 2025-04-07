@@ -18,7 +18,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'mvn -B -V -e -U clean package -Pdist -Pindex'
+        echo "skip"
       }
     }
 
@@ -28,35 +28,24 @@ pipeline {
           nexusPolicyEvaluation(
             enableDebugLogging: false,
             iqStage: 'build',
-            iqApplication: 'sandbox-application',
+            iqApplication: 'honda-04',
             failBuildOnNetworkError: true,
             iqScanPatterns: [
-              [scanPattern: '**/target/*.jar'],
-              [scanPattern: '**/target/*.zip']
+              [scanPattern: 'h2-1.4.196.jar']
             ],
             callflow: [
               enable: true,
-              logLevel: 'DEBUG',
-              algorithm: 'RTA_PLUS',
-              includes: [
-                '**/target/jenkins-examples-callflow-*-dist.zip'
-              ],
-              java: [
-                tool: 'Java 11',
-                options: [
-                  '-Xmx2G'
-                ],
-                properties: [
-                  foo: 'bar'
-                ]
-              ],
+              //includes: [
+              //  '**/target/jenkins-examples-callflow-*-dist.zip'
+              //],
               entrypointStrategy: [
                 $class: 'NamedStrategy',
-                name: 'JAVA_MAIN',
-                namespaces: [
-                  'org.sonatype.lifecycle.jenkins.examples.callflow'
-                ]
-              ]
+                name: 'JAVA_MAIN'
+                //namespaces: [
+                //  'org.sonatype.lifecycle.jenkins.examples.callflow'
+                //]
+              ],
+              logLevel: 'DEBUG'
             ]
           )
 

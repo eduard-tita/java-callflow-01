@@ -34,7 +34,7 @@ pipeline {
               [scanPattern: '**/target/*.jar'],
               [scanPattern: '**/target/*.zip']
             ],
-            callflow: [
+            reachability: [
               logLevel: 'DEBUG',
               java: [
                 tool: 'Java 11'

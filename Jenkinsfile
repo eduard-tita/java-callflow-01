@@ -40,10 +40,10 @@ pipeline {
               //],
               entrypointStrategy: [
                 $class: 'NamedStrategy',
-                name: 'JAVA_MAIN'
-                //namespaces: [
-                //  'org.sonatype.lifecycle.jenkins.examples.callflow'
-                //]
+                name: 'JAVA_MAIN',
+                namespaces: [
+                  'org.h2.tools'
+                ]
               ],
               logLevel: 'DEBUG'
             ]

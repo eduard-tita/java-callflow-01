@@ -18,7 +18,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'nvm clean'
+        sh 'mvn clean'
       }
     }
 

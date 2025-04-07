@@ -42,7 +42,7 @@ pipeline {
                 $class: 'NamedStrategy',
                 name: 'JAVA_MAIN',
                 namespaces: [
-                  'org.h2.tools'
+                  'org.h2.tools', 'org.h2.server', 'org.h2.util'
                 ]
               ],
               logLevel: 'DEBUG'

@@ -33,19 +33,17 @@ pipeline {
             iqScanPatterns: [
               [scanPattern: 'h2-1.4.196.jar']
             ],
-            callflow: [
-              enable: true,
-              //includes: [
-              //  '**/target/jenkins-examples-callflow-*-dist.zip'
-              //],
-              entrypointStrategy: [
-                $class: 'NamedStrategy',
-                name: 'JAVA_MAIN',
+            reachability: [
+              logLevel: 'DEBUG',
+              javaAnalysis: [
+                enable: true,
+                entrypointStrategy: 'JAVA_MAIN',
                 namespaces: [
-                  'org.h2.tools', 'org.h2.server', 'org.h2.util'
+                  [namespace: 'org.h2.tools'],
+                  [namespace: 'org.h2.server'],
+                  [namespace: 'org.h2.util']
                 ]
-              ],
-              logLevel: 'DEBUG'
+              ]
             ]
           )
 

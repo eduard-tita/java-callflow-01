@@ -40,7 +40,7 @@ pipeline {
               //],
               entrypointStrategy: [
                 $class: 'NamedStrategy',
-                name: 'JAVA_MAIN',
+                name: 'ACCESSIBLE_CONCRETE',
                 namespaces: [
                   'org.h2.tools', 'org.h2.server', 'org.h2.util'
                 ]

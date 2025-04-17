@@ -18,7 +18,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'mvn -B -V -e -U clean package -Pdist -Pindex'
+        sh 'mvn -v'
       }
     }
 
@@ -31,32 +31,8 @@ pipeline {
             iqApplication: 'sandbox-application',
             failBuildOnNetworkError: true,
             iqScanPatterns: [
-              [scanPattern: '**/target/*.jar'],
-              [scanPattern: '**/target/*.zip']
+              [scanPattern: 'package.json']
             ],
-            reachability: [
-              logLevel: 'DEBUG',
-              java: [
-                tool: 'Java 11'
-              ],
-              javaAnalysis: [
-                enable: true,
-                force: true,
-                algorithm: 'RTA_PLUS',
-                includes: [
-                  [pattern: '**/target/jenkins-examples-callflow-*-dist.zip']
-                ],
-                entrypointStrategy: 'JAVA_MAIN',
-                namespaces: [
-                  [namespace: 'org.sonatype.lifecycle.jenkins.examples.callflow']
-                ]
-              ]
-            ]
-          )
-
-          archiveArtifacts(
-            artifacts: '**/bomxray.log',
-            followSymlinks: false
           )
         }
       }

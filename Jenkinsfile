@@ -26,7 +26,7 @@ pipeline {
       steps {
         script {
           nexusPolicyEvaluation(
-            enableDebugLogging: false,
+            enableDebugLogging: true,
             iqStage: 'build',
             iqApplication: 'sandbox-application',
             failBuildOnNetworkError: true,

@@ -36,7 +36,7 @@ mvn clean package -Pdist
 # run the analysis
 java -jar <path-to>/nexus-iq-cli-*.jar \
 -a admin:admin123 -s http://localhost:8070 -t build -i local-iq-app \
--c -cn org.sonatype.lifecycle.jenkins.examples.callflow \
+-ra -rn org.sonatype.lifecycle.jenkins.examples.callflow \
 target/**/*.zip
 ```
 

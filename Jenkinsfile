@@ -38,5 +38,22 @@ pipeline {
         }
       }
     }
+
+    stage('Policy 2') {
+      steps {
+        script {
+          nexusPolicyEvaluation(
+            enableDebugLogging: false,
+            iqStage: 'build',
+            iqApplication: 'sandbox-application-2',
+            failBuildOnNetworkError: true,
+            iqScanPatterns: [
+              [scanPattern: '**/target/*.jar']
+              //[scanPattern: '**/target/*.zip']
+            ]
+          )
+        }
+      }
+    }
   }
 }

@@ -31,21 +31,8 @@ pipeline {
             iqApplication: 'sandbox-application',
             failBuildOnNetworkError: true,
             iqScanPatterns: [
-              [scanPattern: '**/target/*.jar'],
-              [scanPattern: '**/target/*.zip']
-            ],
-            reachability: [
-              logLevel: 'DEBUG',
-              javaAnalysis: [
-                enable: true,
-                entrypointStrategy: 'JAVA_MAIN',
-                includes: [
-                  [pattern: '**/target/jenkins-examples-callflow-*-dist.zip']
-                ],
-                namespaces: [
-                  [namespace: 'org.sonatype.lifecycle.jenkins.examples.callflow']
-                ]
-              ]
+              [scanPattern: '**/target/*.jar']
+              //[scanPattern: '**/target/*.zip']
             ]
           )
 

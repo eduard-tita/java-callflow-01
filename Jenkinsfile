@@ -31,8 +31,7 @@ pipeline {
             iqApplication: 'sandbox-application',
             failBuildOnNetworkError: true,
             iqScanPatterns: [
-              [scanPattern: '**/target/*.jar']
-              //[scanPattern: '**/target/*.zip']
+              [scanPattern: '**/target/*.zip']
             ]
           )
         }

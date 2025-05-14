@@ -35,11 +35,6 @@ pipeline {
               //[scanPattern: '**/target/*.zip']
             ]
           )
-
-          archiveArtifacts(
-            artifacts: '**/bomxray.log',
-            followSymlinks: false
-          )
         }
       }
     }

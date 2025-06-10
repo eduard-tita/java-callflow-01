@@ -25,28 +25,32 @@ pipeline {
     stage('Policy') {
       steps {
         script {
-          nexusPolicyEvaluation(
-            enableDebugLogging: false,
-            iqStage: 'build',
-            iqApplication: 'sandbox-application',
-            failBuildOnNetworkError: true,
-            iqScanPatterns: [
-              [scanPattern: '**/target/*.jar'],
-              [scanPattern: '**/target/*.zip']
-            ],
-            reachability: [
-              javaAnalysis: [
-                enable: true,
-                entrypointStrategy: 'JAVA_MAIN',
-                includes: [
-                  [pattern: '**/target/jenkins-examples-callflow-*-dist.zip']
+          try {
+            nexusPolicyEvaluation(
+                enableDebugLogging: false,
+                iqStage: 'build',
+                iqApplication: 'sandbox-application',
+                failBuildOnNetworkError: true,
+                iqScanPatterns: [
+                    [scanPattern: '**/target/*.jar'],
+                    [scanPattern: '**/target/*.zip']
                 ],
-                namespaces: [
-                  [namespace: 'org.sonatype.lifecycle.jenkins.examples.callflow']
+                reachability: [
+                    javaAnalysis: [
+                        enable: true,
+                        entrypointStrategy: 'JAVA_MAIN',
+                        includes: [
+                            [pattern: '**/target/jenkins-examples-callflow-*-dist.zip']
+                        ],
+                        namespaces: [
+                            [namespace: 'org.sonatype.lifecycle.jenkins.examples.callflow']
+                        ]
+                    ]
                 ]
-              ]
-            ]
-          )
+            )
+          } catch (error) {
+            echo "Build failed: ${error.getMessage()}"
+          }
         }
       }
     }

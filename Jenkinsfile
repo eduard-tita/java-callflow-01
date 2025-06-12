@@ -31,10 +31,9 @@ pipeline {
             iqApplication: 'honda-04',
             failBuildOnNetworkError: true,
             iqScanPatterns: [
-              [scanPattern: 'h2-1.4.196.jar']
+              [scanPattern: '*.jar']
             ],
             reachability: [
-              logLevel: 'DEBUG',
               javaAnalysis: [
                 enable: true,
                 entrypointStrategy: 'JAVA_MAIN',

@@ -18,7 +18,8 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'mvn -B -V -e -U clean package -Pdist -Pindex'
+        //sh 'mvn -B -V -e -U clean package -Pdist -Pindex'
+        sh 'mvn -v'
       }
     }
 
@@ -31,19 +32,14 @@ pipeline {
             iqApplication: 'sandbox-application',
             failBuildOnNetworkError: true,
             iqScanPatterns: [
-              [scanPattern: '**/target/*.jar'],
-              [scanPattern: '**/target/*.zip']
+              [scanPattern: 'nexus-iq-bamboo-plugin-3.3.1.jar']
             ],
             reachability: [
               logLevel: 'DEBUG',
               javaAnalysis: [
                 enable: true,
-                entrypointStrategy: 'JAVA_MAIN',
-                includes: [
-                  [pattern: '**/target/jenkins-examples-callflow-*-dist.zip']
-                ],
                 namespaces: [
-                  [namespace: 'org.sonatype.lifecycle.jenkins.examples.callflow']
+                  [namespace: 'com.sonatype.clm.ci.bamboo']
                 ]
               ]
             ]

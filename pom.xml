@@ -16,17 +16,10 @@
   </properties>
 
   <dependencies>
-    <!-- https://nvd.nist.gov/vuln/detail/CVE-2023-2976 -->
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
-      <version>30.0-jre</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.thoughtworks.xstream</groupId>
-      <artifactId>xstream</artifactId>
-      <version>1.4.5</version>
+      <version>33.2.1-jre</version>
     </dependency>
   </dependencies>
 

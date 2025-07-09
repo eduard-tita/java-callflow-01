@@ -32,7 +32,7 @@ pipeline {
             failBuildOnNetworkError: true,
             iqScanPatterns: [
               [scanPattern: '**/target/*.jar'],
-              [scanPattern: '**/target/*.zip']
+              [scanPattern: '**/*.zip']
             ],
             reachability: [
               logLevel: 'DEBUG',

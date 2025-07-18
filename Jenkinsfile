@@ -16,9 +16,15 @@ pipeline {
   }
 
   stages {
-    stage('Build') {
+    stage('Build Java') {
       steps {
         sh 'mvn -B -V -e -U clean package -Pdist -Pindex'
+      }
+    }
+
+    stage('Build Javascript') {
+      steps {
+        sh 'npm install'
       }
     }
 

@@ -32,24 +32,27 @@ pipeline {
             failBuildOnNetworkError: true,
             iqScanPatterns: [
               [scanPattern: '**/target/*.jar'],
-              [scanPattern: '**/target/*.zip']
+              [scanPattern: '**/target/*.zip'],
+              [scanPattern: 'package.json'],
+              [scanPattern: 'package-lock.json']
             ],
             reachability: [
               logLevel: 'DEBUG',
-              java: [
-                tool: 'Java 11'
-              ],
               javaAnalysis: [
                 enable: true,
-                force: true,
-                algorithm: 'RTA_PLUS',
+                entrypointStrategy: 'JAVA_MAIN',
                 includes: [
                   [pattern: '**/target/jenkins-examples-callflow-*-dist.zip']
                 ],
-                entrypointStrategy: 'JAVA_MAIN',
                 namespaces: [
                   [namespace: 'org.sonatype.lifecycle.jenkins.examples.callflow']
                 ]
+              ],
+              jsAnalysis: [
+                  enable: true,
+                  sourceFiles: [
+                      [pattern: 'app/**']
+                  ]
               ]
             ]
           )

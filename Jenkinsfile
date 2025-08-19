@@ -16,8 +16,23 @@ pipeline {
   }
 
   stages {
+    stage('Read POM Version') {
+      steps {
+        script {
+          // Read the pom.xml file (assuming it's in the current directory)
+          def pom = readMavenPom()
+          // Access the version property
+          def projectVersion = pom.getVersion()
+          echo "Project Version: ${projectVersion}"
+          // You can also set this as an environment variable for later use
+          env.APP_VERSION = projectVersion
+        }
+      }
+    }
+
     stage('Build') {
       steps {
+        echo "Building version: ${env.APP_VERSION}"
         sh 'mvn clean'
       }
     }

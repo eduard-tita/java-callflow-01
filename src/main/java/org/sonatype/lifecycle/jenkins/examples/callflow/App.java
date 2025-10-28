@@ -51,7 +51,10 @@ public class App
 
   private static Object fastjsonTest(String input) {
     // CVE-2022-25845
-    ParserConfig.getGlobalInstance().setAutoTypeSupport(true); // vulnerable autotype set to true
+    ParserConfig.getGlobalInstance().setAutoTypeSupport(true); // vulnerable AutoType set to true
+
+    ParserConfig.getGlobalInstance().setSafeMode(true); //  should bypass the vulnerable method
+
     DefaultJSONParser parser = new DefaultJSONParser(input);
     Object obj = parser.parse("message");
     return obj;

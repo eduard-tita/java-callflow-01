@@ -14,6 +14,9 @@ package org.sonatype.lifecycle.jenkins.examples.callflow;
 
 import java.io.File;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.parser.ParserConfig;
 import com.google.common.io.Files;
 
 /**
@@ -22,17 +25,33 @@ import com.google.common.io.Files;
 public class App
 {
   public static void main(final String[] args) {
-    File dir = createTempDirectory();
+    File dir = null;
     try {
+      dir = createTempDirectory();
       System.out.println("Created temporary directory: " + dir);
+
+      JSONObject jsonData = new JSONObject();
+      jsonData.put("message", "hello");
+
+      Object str = fastjsonTest(JSON.toJSONString(jsonData));
+      System.out.println("Fastjson object: " + str);
     }
     finally {
-      dir.delete();
+      if (dir != null) {
+        dir.delete();
+      }
     }
   }
 
   private static File createTempDirectory() {
     // https://nvd.nist.gov/vuln/detail/CVE-2023-2976
     return Files.createTempDir();
+  }
+
+  private static Object fastjsonTest(String input) {
+    // CVE-2022-25845
+    ParserConfig.getGlobalInstance().setAutoTypeSupport(true); // vulnerable autotype set to true
+    Object obj = JSON.parseObject(input);
+    return obj;
   }
 }

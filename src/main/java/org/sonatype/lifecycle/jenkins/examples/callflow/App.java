@@ -16,6 +16,7 @@ import java.io.File;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.parser.DefaultJSONParser;
 import com.alibaba.fastjson.parser.ParserConfig;
 import com.google.common.io.Files;
 
@@ -51,7 +52,8 @@ public class App
   private static Object fastjsonTest(String input) {
     // CVE-2022-25845
     ParserConfig.getGlobalInstance().setAutoTypeSupport(true); // vulnerable autotype set to true
-    Object obj = JSON.parseObject(input);
+    DefaultJSONParser parser = new DefaultJSONParser(input);
+    Object obj = parser.parse("message");
     return obj;
   }
 }

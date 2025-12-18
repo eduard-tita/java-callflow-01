@@ -33,20 +33,20 @@ pipeline {
             iqScanPatterns: [
               [scanPattern: '**/target/*.jar'],
               [scanPattern: '**/*.zip']
-            ]//,
-            //reachability: [
-            //  logLevel: 'DEBUG',
-            //  javaAnalysis: [
-            //    enable: true,
-            //    entrypointStrategy: 'JAVA_MAIN',
-            //    includes: [
-            //      [pattern: '**/target/jenkins-examples-callflow-*-dist.zip']
-            //    ],
-            //    namespaces: [
-            //      [namespace: 'org.sonatype.lifecycle.jenkins.examples.callflow']
-            //    ]
-            //  ]
-            //]
+            ],
+            reachability: [
+              logLevel: 'DEBUG',
+              javaAnalysis: [
+                enable: true,
+                entrypointStrategy: 'JAVA_MAIN',
+                includes: [
+                  [pattern: '**/target/jenkins-examples-callflow-*-dist.zip']
+                ],
+                namespaces: [
+                  [namespace: 'org.sonatype.lifecycle.jenkins.examples.callflow']
+                ]
+              ]
+            ]
           )
 
           archiveArtifacts(

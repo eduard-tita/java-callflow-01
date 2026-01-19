@@ -35,7 +35,7 @@ pipeline {
               [scanPattern: '**/*.zip']
             ],
             reachability: [
-              logLevel: 'DEBUG',
+              logLevel: 'INFO',
               javaAnalysis: [
                 enable: true,
                 entrypointStrategy: 'JAVA_MAIN',

@@ -19,3 +19,4 @@ replay_pid*
 
 # Other files
 /.idea/
+/node_modules/

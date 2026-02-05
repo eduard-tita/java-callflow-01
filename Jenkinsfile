@@ -43,7 +43,7 @@ pipeline {
               [scanPattern: 'package-lock.json']
             ],
             reachability: [
-              logLevel: 'DEBUG',
+              //logLevel: 'DEBUG',
               javaAnalysis: [
                 enable: true,
                 entrypointStrategy: 'JAVA_MAIN',

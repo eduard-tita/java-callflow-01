@@ -28,7 +28,7 @@ pipeline {
           nexusPolicyEvaluation(
             enableDebugLogging: false,
             iqStage: 'build',
-            iqApplication: 'sandbox-application',
+            iqApplication: 'ci-config-app',
             iqScanPatterns: [
               [scanPattern: '**/target/*.jar'],
               [scanPattern: '**/*.zip']

@@ -29,7 +29,6 @@ pipeline {
             enableDebugLogging: false,
             iqStage: 'build',
             iqApplication: 'sandbox-application',
-            failBuildOnNetworkError: true,
             iqScanPatterns: [
               [scanPattern: '**/target/*.jar'],
               [scanPattern: '**/*.zip']

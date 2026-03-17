@@ -31,6 +31,8 @@ pipeline {
     stage('Policy') {
       steps {
         script {
+          echo "env.NODE_EXECUTABLE: ${env.NODE_EXECUTABLE}"
+
           nexusPolicyEvaluation(
             enableDebugLogging: false,
             iqStage: 'build',

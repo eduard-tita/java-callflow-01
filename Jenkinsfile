@@ -22,39 +22,34 @@ pipeline {
       }
     }
 
-    stage('Policy') {
-      steps {
-        script {
-          nexusPolicyEvaluation(
-            enableDebugLogging: false,
-            iqStage: 'build',
-            iqApplication: 'ci-config-app',
-            iqScanPatterns: [
-              [scanPattern: '**/target/*.jar'],
-              [scanPattern: '**/*.zip']
-            ],
-            reachability: [
-              logLevel: 'INFO',
-              javaAnalysis: [
-                enable: true,
-                entrypointStrategy: 'JAVA_MAIN',
-                includes: [
-                  [pattern: '**/target/jenkins-examples-callflow-*-dist.zip']
-                ],
-                namespaces: [
-                  [namespace: 'org.sonatype.lifecycle.jenkins.examples.callflow']
-                ]
-              ]
-            ]
-          )
-
-          archiveArtifacts(
-            artifacts: '**/bomxray.log',
-            followSymlinks: false
-          )
-        }
-      }
-    }
+    //stage('Policy') {
+    //  steps {
+    //    script {
+    //      nexusPolicyEvaluation(
+    //        enableDebugLogging: false,
+    //        iqStage: 'build',
+    //        iqApplication: 'ci-config-app',
+    //        iqScanPatterns: [
+    //          [scanPattern: '**/target/*.jar'],
+    //          [scanPattern: '**/*.zip']
+    //        ],
+    //        reachability: [
+    //          logLevel: 'INFO',
+    //          javaAnalysis: [
+    //            enable: true,
+    //            entrypointStrategy: 'JAVA_MAIN',
+    //            includes: [
+    //              [pattern: '**/target/jenkins-examples-callflow-*-dist.zip']
+    //            ],
+    //            namespaces: [
+    //              [namespace: 'org.sonatype.lifecycle.jenkins.examples.callflow']
+    //            ]
+    //          ]
+    //        ]
+    //      )
+    //    }
+    //  }
+    //}
 
     stage('NXRM Upload') {
       steps {

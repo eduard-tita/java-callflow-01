@@ -55,5 +55,28 @@ pipeline {
         }
       }
     }
+
+    stage('NXRM Upload') {
+      steps {
+        nexusPublisher(
+            nexusInstanceId: 'NXRM3',
+            nexusRepositoryId: 'maven-snapshots',
+            packages: [
+                [
+                    $class: 'MavenPackage',
+                    mavenAssetList: [
+                        [classifier: '', extension: '', filePath: 'target/jenkins-examples-callflow-1-SNAPSHOT.jar']
+                    ],
+                    mavenCoordinate: [
+                        artifactId: 'jenkins-examples-callflow',
+                        groupId: 'org.sonatype.lifecycle.jenkins.examples',
+                        packaging: 'jar',
+                        version: '1-SNAPSHOT'
+                    ]
+                ]
+            ]
+        )
+      }
+    }
   }
 }
